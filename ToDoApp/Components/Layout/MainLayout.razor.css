@@ -1,0 +1,9 @@
+.page{
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+main{
+    overflow-y: scroll;
+    padding: 2rem;
+}

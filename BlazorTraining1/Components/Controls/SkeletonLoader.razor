@@ -1,0 +1,19 @@
+﻿@for (int i = 0; i < Rows; i++)
+{
+    <div class="skeleton-row" style="--skeleton-height: @(Height); --skeleton-width: @(Width) @Style;">
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int Rows { get; set; } = 3; // Number of rows for the skeleton loader
+
+    [Parameter]
+    public string Height { get; set; } = "20px"; // Height of each row
+
+    [Parameter]
+    public string Width { get; set; } = "100%"; // Width of each row
+
+    [Parameter]
+    public string Style { get; set; } = "100%"; // Width of each row
+}

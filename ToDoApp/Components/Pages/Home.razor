@@ -1,0 +1,48 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<input type="text" @oninput="HandleInputChange" />
+
+@code {
+    private void HandleInputChange(ChangeEventArgs e)
+    {
+        // Update the FormattedValue based on the new InputValue
+        if (decimal.TryParse(e.Value.ToString().Replace("€", ""), out var parsedValue))
+        {
+            FormattedValue = parsedValue;
+        }
+        else
+        {
+            FormattedValue = 0;
+        }
+    }
+
+    private string _inputValue = "€0.00";
+
+    public string InputValue
+    {
+        get => _inputValue;
+        set
+        {
+            _inputValue = value;
+            // Parse the value and update the FormattedValue property
+            if (decimal.TryParse(value.Replace("€", ""), out var parsedValue))
+            {
+                FormattedValue = parsedValue;
+            }
+            else
+            {
+                FormattedValue = 0;
+            }
+        }
+    }
+
+    public decimal FormattedValue { get; set; }
+
+    // ... other properties and methods ...
+}

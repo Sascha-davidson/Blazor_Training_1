@@ -1,0 +1,57 @@
+﻿.scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Prevent default scrollbar */
+}
+
+.scroll-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: -20px; /* Ensure native scrollbar is off-screen */
+    bottom: 0;
+    overflow-y: scroll;
+    padding-right: 20px; /* Reserve space for custom scrollbar */
+    scrollbar-width: none; /* Firefox */
+}
+
+.scroll-content p{
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.scroll-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.custom-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 13px;
+    height: 100%;
+    display: none;
+}
+
+.scroll-thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 50px; 
+    background: rgba(0,0,0,.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, width .1s ease-in-out;
+}
+
+    .scroll-thumb:hover {
+        width: 13px;
+        background: rgba(0,0,0,.4);
+    }
+
+
+.scroll-container:hover .custom-scrollbar {
+    display: block;
+}

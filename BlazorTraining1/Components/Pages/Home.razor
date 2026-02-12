@@ -1,0 +1,55 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<input id="@ID"
+       name="@Name"
+       type="text"
+       @bind="FormattedValue"
+       @attributes="Attributes"
+       @onfocusout="OnFocusOut"
+       placeholder="@PlaceHolder" />
+
+@code {
+    [Parameter]
+    public string ID { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> Attributes { get; set; }
+
+    [Parameter]
+    public string PlaceHolder { get; set; }
+
+    [Parameter]
+    public EventCallback<ChangeEventArgs> OnInput { get; set; }
+
+    private decimal _formattedValue;
+
+    public string FormattedValue
+    {
+        get => _formattedValue == Math.Floor(_formattedValue) ? $"€{_formattedValue:0}" : $"€{_formattedValue:0.##}";
+        set
+        {
+            if (decimal.TryParse(value.Replace("€", "").Trim(), out var parsedValue))
+            {
+                _formattedValue = parsedValue;
+            }
+            else
+            {
+                _formattedValue = 0;
+            }
+        }
+    }
+
+    private void OnFocusOut()
+    {
+        // Optional: Add any additional logic when the input loses focus
+    }
+}

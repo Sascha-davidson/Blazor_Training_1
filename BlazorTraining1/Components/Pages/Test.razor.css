@@ -1,0 +1,47 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Disable default scrolling */
+}
+
+.scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Hide native scrollbars */
+}
+
+.scroll-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: -20px; /* Hide scrollbar area */
+    bottom: 0;
+    overflow-y: scroll;
+    padding-right: 20px; /* Reserve space for custom scrollbar */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer 10+ */
+}
+
+    .scroll-content::-webkit-scrollbar {
+        display: none; /* For Chrome, Safari, and Edge */
+    }
+
+.custom-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.scroll-thumb {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50px; /* Initial height */
+    background-color: #888;
+    border-radius: 8px;
+    cursor: pointer;
+}

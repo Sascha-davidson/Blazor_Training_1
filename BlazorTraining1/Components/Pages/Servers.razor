@@ -1,0 +1,83 @@
+﻿@page "/servers"
+
+@rendermode InteractiveServer
+
+@inject NavigationManager NavigationManager
+
+<h3>Servers</h3>
+<br />
+<br />
+
+<div class="container-fluid text-center">
+    <div class="row w-70">
+        @foreach (var city in cities)
+        {
+            <div class="col">
+                <div class="card @(selectedCity.Equals(city, StringComparison.OrdinalIgnoreCase)?"border-primary": "")" style="width: fit-content;">
+                    <img src="@($"/image/{city}.jpg")" class="card-img-top" style="width: 10rem; height: 7rem; object-fit: cover;" alt="@city">
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary" @onclick="@(() => SelectCity(city))">@city</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+<ServerComponent></ServerComponent>
+<ServerListComponent></ServerListComponent>
+
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="search servers" @bind-value="serverFilter" @bind-value:event="oninput" />
+    <button class="btn btn-outline-secondary" type="button" id="button-search" @onclick="HandleSearch">search</button>
+</div>
+
+<br />
+
+<p>
+    <a href="/servers/add" class="btn btn-primary">Add Server</a>
+</p>
+
+<p>
+    <button class="btn btn-secondary" @onclick="@(() =>
+            {
+            this.servers.Insert(0, new Server {Name = "ServerA", City="Alkmaar"});
+            })">
+        Add server 2
+    </button>
+</p>
+
+@code {
+    private List<Server> servers = ServersRepository.GetServersByCity("Amsterdam");
+    private List<string> cities = CitiesRepository.GetCities();
+    private string selectedCity = "Amsterdam";
+    private string _serverFilter = "";
+    private string serverFilter
+    {
+        get => _serverFilter;
+        set
+        {
+            _serverFilter = value;
+            this.servers = ServersRepository.SearchServers(serverFilter);
+        }
+    }
+
+    private void SelectCity(string cityName)
+    {
+        this.selectedCity = cityName;
+        this.servers = ServersRepository.GetServersByCity(this.selectedCity);
+
+        if (cityName == "Hoorn")
+        {
+            for (int i = 16; i < 2000; i++)
+            {
+                //servers.Add(new Server { Id = i, Name = $"Server{i}", City = "Hoorn" });
+            }
+        }
+    }
+    private void HandleSearch()
+    {
+        //this.servers = ServersRepository.SearchServers(serverFilter);
+        this.selectedCity = string.Empty;
+    }
+}

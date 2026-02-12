@@ -1,0 +1,16 @@
+﻿:host {
+    display: block; /* Ensure it participates in layout */
+    width: 100%; /* Or any explicit value like '400px' */
+    container-name: hero-banner; /* Ensure container-name is valid */
+    container-type: inline-size; /* Valid container type */
+}
+
+h3 {
+    background-color: orange;
+}
+
+@container hero-banner (min-width: 300px) { /* Match the container-name exactly */
+    h3 {
+        background-color: hotpink;
+    }
+}

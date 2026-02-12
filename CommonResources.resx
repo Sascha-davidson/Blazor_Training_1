@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+    <data name="NewTest" xml:space="preserve">
+    <value>New Test Value</value>
+  </data>
+</root>
