@@ -1,4 +1,4 @@
-# Blazor_Training_1
+# Blazor Training
 
 Dit is een training die ik volg up Udemy.com
 
